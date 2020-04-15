@@ -1,0 +1,22 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhangchao.mybatis.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.zhangchao.mybatis.Entity.User">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+        <result column="gender" jdbcType="INTEGER" property="gender" />
+        <association property="bankCard" javaType="com.zhangchao.mybatis.Entity.BankCard" resultMap="bankCard"/>
+    </resultMap>
+    <resultMap id="bankCard" type="com.zhangchao.mybatis.Entity.BankCard">
+        <result column="bankId" jdbcType="VARCHAR" property="id"/>
+        <result column="userId" jdbcType="VARCHAR" property="userId"/>
+        <result column="cardNo" jdbcType="VARCHAR" property="cardNo"/>
+        <result column="openBank" jdbcType="VARCHAR" property="openBank"/>
+    </resultMap>
+    <select id="getUserList" resultMap="BaseResultMap">
+      select a.*,b.id bankId,b.userId,b.cardNo,b.openBank openBank from user a left join bankCard b on a.id = b.userId
+    </select>
+
+
+</mapper>

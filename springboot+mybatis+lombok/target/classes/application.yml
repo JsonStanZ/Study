@@ -1,0 +1,19 @@
+server:
+  port: 80
+  servlet:
+    context-path: /mybatis
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3307/luckymoney?serverTimezone=UTC
+    username: root
+    password: J*7fiFW1$4wB%5rl
+  jpa:
+    show-sql: true
+  aop:
+    auto: true
+mybatis:
+  mapper-locations: com.zhangchao.mybatis.mapper/*.xml                   #resource文件夹下面mapper.xml路径
+  type-aliases-package: com.zhangchao.mybatis.mapper             #mapper.xml文件中resultMap的type或者parameterType会使用自定义的pojo，这里是让mybatis自动扫描自定义pojo包(就是mapper.java)
+
